@@ -58,7 +58,7 @@
 - [ ] react, router, redux
 - [ ] antpro
 - [ ] flex布局
-- [ ] mdn
+- [ ] mdn(html/css/js)
 
 ## 4.服务程序
 
