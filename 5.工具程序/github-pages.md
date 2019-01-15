@@ -2,7 +2,7 @@
 
 # GithubPages
 
-Github Pages是github推出的免费的静态网站托管服务，支持`用户`和`项目`两种站点，访问域名为`<user>.github.io`。
+Github Pages是github推出的免费静态网站托管服务，支持`用户`和`项目`两种站点，访问域名为`<user>.github.io`。
 
 
 
@@ -40,7 +40,7 @@ Github Pages是github推出的免费的静态网站托管服务，支持`用户`
 └── src/                # 前端源文件目录
 ```
 
-由于`master`和`source`分支的目录结构不一样(master只有source分支下public的内容)，需要使用`git subtree push`功能将`source`分支下public目录的文件同步到master分支，为方便起见使用`deploy.sh`脚本。
+由于`master`和`source`分支的目录结构不一样(master只有source分支的public内容)，需要使用`git subtree push`功能将`source`分支的public目录同步到master分支，为方便起见使用`deploy.sh`脚本。
 
 `deploy.sh`部署脚本：
 
@@ -55,7 +55,7 @@ git subtree push --prefix public origin master
 
 ## 项目站点
 
-项目站点用于添加项目文档说明等，站点静态文件与位于项目同一个仓库，项目站点通过`<user>.github.io/<project>`访问。
+项目站点用于添加项目文档说明等，站点静态文件位于项目同一个仓库，项目站点通过`<user>.github.io/<project>`访问。
 
 
 
@@ -69,13 +69,13 @@ git subtree push --prefix public origin master
 
 `最佳实践`
 
-为了避免站点代码、站点文件、业务代码的代码揉到一块，实践中将三者各放一个分支：
+为了避免站点代码、站点文件、业务代码揉到一块，实践中将三者各放一个分支：
 
 - `master` 业务主分支
 - `gh-pages` 站点发布分支，包含站点静态文件
 - `doc-source` 站点源码分支，包含站点项目源码，编译输出目录可为`public`
 
-在`doc-source`分支下编辑完站点后，编译站点，将静态输出文件发布到`gh-pages`分支，可以使用脚本完成。
+在`doc-source`分支下编辑完站点后，将编译输出的静态文件发布到`gh-pages`分支，可以使用脚本完成。
 
 `deploy.sh`部署脚本：
 
@@ -90,7 +90,7 @@ git subtree push --prefix public origin gh-pages
 
 由于github pages站点源码和站点文件位于不同分支，而且目录结构完全不同，为了代码同步方便，使用`git subtree`功能。
 
-`git subtree`用于在一个仓库中将另一个仓库做为子仓库(目录管理)，而且当前仓库的使用与之前完全一致，只是在需要同步另一个仓库代码的时候调用相应的`add`、`pull`、`push`操作。
+`git subtree`用于在一个仓库中将子目录映射到另一个仓库，而且当前仓库的使用与之前完全一致，只是在需要同步另一个仓库代码的时候调用相应的`add`、`pull`、`push`操作。
 
 
 
