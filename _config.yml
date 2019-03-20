@@ -66,4 +66,6 @@ theme: ares
 
 # Deployment
 deploy:
-  type:
+  type: git
+  repo: https://github.com/hitzheng/hitzheng.github.io
+  branch: master
