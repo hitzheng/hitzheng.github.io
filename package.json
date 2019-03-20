@@ -9,8 +9,9 @@
     "start": "hexo server",
     "build": "hexo clean && hexo generate",
     "deploy": "hexo clean && hexo deploy",
-    "pull-theme": "git subtree pull --prefix themes/ares theme-ares master",
-    "push-theme": "git subtree push --prefix themes/ares theme-ares master"
+    "add-theme": "git subtree add --prefix themes/ares https://github.com/hitzheng/hexo-theme-ares master",
+    "pull-theme": "git subtree pull --prefix themes/ares https://github.com/hitzheng/hexo-theme-ares master",
+    "push-theme": "git subtree push --prefix themes/ares https://github.com/hitzheng/hexo-theme-ares master"
   },
   "dependencies": {
     "hexo": "^3.7.0",
