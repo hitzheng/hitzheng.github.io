@@ -1,0 +1,10 @@
+<div class="panel panel-default" id="toc-sidebar">
+    <div class="panel-heading"><%= __("content") %></div>
+    <div class="panel-body">
+        <nav id="toc-sidenav">
+            <div class="nav">
+                <%- toc(post.content, {class: "toc-list", max_depth: theme.toc_max_depth, list_number: false}) %>
+            </div>
+        </nav>
+    </div>
+</div>

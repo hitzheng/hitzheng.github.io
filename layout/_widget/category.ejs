@@ -1,0 +1,8 @@
+<% if (site.categories && site.categories.length){ %>
+    <div class="panel panel-default">
+        <div class="panel-heading"><%= __("categories") %></div>
+        <div class="panel-body">
+            <%- list_categories() %>
+        </div>
+    </div>
+<% } %>

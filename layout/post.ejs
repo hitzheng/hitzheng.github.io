@@ -1,0 +1,17 @@
+<row>
+    <div class="col-md-3 hidden-xs hidden-sm">
+        <%- partial("_widget/toc", {post: page}) %>
+    </div>
+
+    <div class="col-md-9">
+        <article>
+            <%- partial("_partial/post_header", {post: page}) %>
+
+            <div class="post-body"><%- page.content %></div>
+
+            <%- partial("_partial/post_related", {post: page}) %>
+            <%- partial("_partial/post_footer", {post: page}) %>
+            <%- partial("_partial/post_comment", {post: page}) %>
+        </article>
+    </div>
+</row>

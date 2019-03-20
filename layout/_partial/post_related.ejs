@@ -1,0 +1,16 @@
+<% if (post.categories.length > 0) { %>
+    <% let itemCount = 0, catLength = post.categories.length %>
+    <% let relatedPosts = post.categories.data[catLength - 1].posts %>
+    <% if (relatedPosts.length > 1) { %>
+        <div class="post-related">
+            <h4><%= __("related_posts") %></h4>
+            <ul>
+                <% relatedPosts.forEach(item => { %>
+                    <% if (item.path !== post.path && itemCount++ < 20) { %>
+                        <li><a href="<%= url_for(item.path) %>"><%= item.title %></a></li>
+                    <% } %>
+                <% }) %>
+            </ul>
+        </div>
+    <% } %>
+<% } %>
