@@ -21,7 +21,7 @@ Modify `theme` setting in `_config.yml` to `ares`.
 ### Update
 
 ``` bash
-cd themes/candy
+cd themes/ares
 git pull
 ```
 
