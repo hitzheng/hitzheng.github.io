@@ -1,0 +1,69 @@
+
+# Site
+title: 郑伟
+subtitle: 郑伟的个人博客
+description:
+keywords: [PHP, GO, Java, DevOps, Linux, 前端, 服务端]
+author: 郑伟
+language: zh-CN
+timezone: Asia/Shanghai
+
+# URL
+url: http://hitzheng.github.io
+root: /
+permalink: :category/:title.html
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md
+default_layout: post
+titlecase: false
+external_link: true
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: true
+future: true
+
+# builtin code highlight
+highlight:
+  enable: false
+  line_number: true
+  auto_detect: true
+  tab_replace: true
+  
+# Home page
+index_generator:
+  path: ''
+  per_page: 0
+  order_by: -date
+  
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date & Time
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+per_page: 0
+pagination_dir: page
+
+# Themes
+theme: ares
+
+# Deployment
+deploy:
+  type:
