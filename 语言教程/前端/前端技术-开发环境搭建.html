@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/styles/github-gist.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    
+
+    <title>[前端技术]开发环境搭建 | 郑伟</title>
+
+    <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
+<div id="root">
+    <header class="navbar navbar-inverse navbar-static-top" id="top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">郑伟</a>
+        </div>
+
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li><a href="/">首页</a></li>
+                
+                    <li><a href="/archives/">归档</a></li>
+                
+                    <li><a href="/about.html">关于</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+    <main>
+        <div class="container">
+            <row>
+    <div class="col-md-3 hidden-xs hidden-sm">
+        <div class="panel panel-default" id="toc-sidebar">
+    <div class="panel-heading">目录</div>
+    <div class="panel-body">
+        <nav id="toc-sidenav">
+            <div class="nav">
+                <ol class="toc-list"><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#组件列表"><span class="toc-list-text">组件列表</span></a></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#安装node"><span class="toc-list-text">安装node</span></a></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#安装构建工具"><span class="toc-list-text">安装构建工具</span></a></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#安装react"><span class="toc-list-text">安装react</span></a><ol class="toc-list-child"><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#配置文件"><span class="toc-list-text">配置文件</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#运行webpack"><span class="toc-list-text">运行webpack</span></a></li></ol></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#IDE配置"><span class="toc-list-text">IDE配置</span></a></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#npm"><span class="toc-list-text">npm</span></a></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#babel"><span class="toc-list-text">babel</span></a><ol class="toc-list-child"><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#安装："><span class="toc-list-text">安装：</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#cli配置文件-babelrc"><span class="toc-list-text">cli配置文件.babelrc</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#全局安装使用方法"><span class="toc-list-text">全局安装使用方法</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#本地安装使用方法"><span class="toc-list-text">本地安装使用方法</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#babel-node"><span class="toc-list-text">babel-node</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#babel-polyfill"><span class="toc-list-text">babel-polyfill</span></a></li></ol></li><li class="toc-list-item toc-list-level-2"><a class="toc-list-link" href="#webpack"><span class="toc-list-text">webpack</span></a><ol class="toc-list-child"><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#文档"><span class="toc-list-text">文档</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#常用选项"><span class="toc-list-text">常用选项</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#entry-输入"><span class="toc-list-text">entry(输入)</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#output-输出"><span class="toc-list-text">output(输出)</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#mode-模式"><span class="toc-list-text">mode(模式)</span></a></li><li class="toc-list-item toc-list-level-3"><a class="toc-list-link" href="#loader-加载器"><span class="toc-list-text">loader(加载器)</span></a></li></ol></li></ol>
+            </div>
+        </nav>
+    </div>
+</div>
+
+    </div>
+
+    <div class="col-md-9">
+        <article>
+            <div class="post-header">
+    <div class="post-title">
+    <a href="">[前端技术]开发环境搭建</a>
+</div>
+<div class="post-meta">
+    <div>2019年03月10日</div>
+
+    
+        <div>
+            
+                <span><a href="../../categories/语言教程/">语言教程</a></span>
+            
+                <span><a href="../../categories/语言教程/前端/">前端</a></span>
+            
+        </div>
+    
+
+    
+        <div>
+            
+                <span><a href="../../tags/前端/">前端</a></span>
+            
+                <span><a href="../../tags/webpack/">webpack</a></span>
+            
+                <span><a href="../../tags/react/">react</a></span>
+            
+        </div>
+    
+</div>
+
+</div>
+
+
+            <div class="post-body"><h2 id="组件列表"><a href="#组件列表" class="headerlink" title="组件列表"></a>组件列表</h2><ol>
+<li>node 基础工具</li>
+<li>babel 编译工具</li>
+<li>webpack 打包工具</li>
+<li>webpack-dev-server 开发服务器(自动编译打包)</li>
+<li>react 开发库</li>
+</ol>
+<h2 id="安装node"><a href="#安装node" class="headerlink" title="安装node"></a>安装node</h2><p>根据系统选择以下几种安装方式</p>
+<ol>
+<li>官网下载二进制包，默认安装即可</li>
+<li>OSX使用brew install node安装</li>
+<li>CentOS使用yum install nodejs安装</li>
+<li>Ubuntu使用apt-get install nodejs安装</li>
+</ol>
+<h2 id="安装构建工具"><a href="#安装构建工具" class="headerlink" title="安装构建工具"></a>安装构建工具</h2><pre><code>npm install webpack webpack-dev-server \
+    babel-loader babel-core \
+    babel-preset-react babel-preset-env \
+    style-loader css-loader
+</code></pre><p>其中</p>
+<ol>
+<li>webpack打包工具</li>
+<li>webpack-dev-server开发服务器</li>
+<li>babel编译工具</li>
+<li>babel-preset-react提供react转换规则</li>
+<li>babel-preset-env提供(es2015|es2016|es2017)转换规则</li>
+<li>css-loader处理css文件</li>
+<li>style-loader将css插入style标签(js)</li>
+</ol>
+<h2 id="安装react"><a href="#安装react" class="headerlink" title="安装react"></a>安装react</h2><pre><code>npm install react react-dom
+</code></pre><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>package.json</p>
+<pre><code>{
+    &quot;name&quot;: &quot;react-demo&quot;,
+    &quot;version&quot;: &quot;1.0.0&quot;,
+    &quot;description&quot;: &quot;react demo project&quot;,
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;scripts&quot;: {
+        &quot;start&quot;: &quot;webpack-dev-server -d --progress --colors&quot;,
+        &quot;build&quot;: &quot;webpack -p --progress --colors&quot;,
+        &quot;build-dev&quot;: &quot;webpack -d --progress --colors&quot;,
+        &quot;build-lib&quot;: &quot;webpack -p --process --colors webpack.dll.js&quot;
+    },
+    &quot;author&quot;: &quot;&quot;,
+    &quot;license&quot;: &quot;ISC&quot;,
+    &quot;dependencies&quot;: {
+        &quot;axios&quot;: &quot;^0.18.0&quot;,
+        &quot;react&quot;: &quot;^16.3.2&quot;,
+        &quot;react-dom&quot;: &quot;^16.3.2&quot;,
+        &quot;react-redux&quot;: &quot;^6.0.0&quot;,
+        &quot;react-router-dom&quot;: &quot;^4.3.1&quot;,
+        &quot;redux&quot;: &quot;^4.0.1&quot;,
+        &quot;qs&quot;: &quot;latest&quot;
+    },
+    &quot;devDependencies&quot;: {
+        &quot;babel-core&quot;: &quot;^6.26.0&quot;,
+        &quot;babel-loader&quot;: &quot;^7.1.4&quot;,
+        &quot;babel-plugin-import&quot;: &quot;^1.7.0&quot;,
+        &quot;babel-polyfill&quot;: &quot;^6.26.0&quot;,
+        &quot;babel-preset-env&quot;: &quot;^1.6.1&quot;,
+        &quot;babel-preset-react&quot;: &quot;^6.24.1&quot;,
+        &quot;css-loader&quot;: &quot;^2.1.0&quot;,
+        &quot;html-webpack-plugin&quot;: &quot;^3.2.0&quot;,
+        &quot;style-loader&quot;: &quot;^0.23.1&quot;,
+        &quot;webpack&quot;: &quot;^4.6.0&quot;,
+        &quot;webpack-cli&quot;: &quot;^3.1.1&quot;,
+        &quot;webpack-dev-server&quot;: &quot;^3.1.3&quot;
+    }
+}
+</code></pre><p>webpack.config.js</p>
+<pre><code>var path = require(&#39;path&#39;);
+module.exports = {
+    entry: {
+        // 指定入口文件，key即为输出中的[name]
+        // 单页应用可以不指定key，默认为main
+        wallpaper: &#39;./src/wallpaper/index.js&#39;
+    },
+    output: {
+        // 输出文件名，多面应用可使用[name]-[hash:8]占位
+        filename: &#39;dist/[name].js&#39;,
+        // 文件的输出目录
+        path: __dirname + &#39;/public&#39;),
+        // 输出文件的web访问路径，eg. /或http://cdndomain/
+        // 主要用于其它插件修改静态文件的访问路径
+        publicPath: &#39;/&#39;
+    },
+    devServer: {
+        // server根目录(可多个)，服务静态文件
+        contentBase: [__dirname + &#39;/public&#39;],
+        // 输出文件的web访问路径(输出目录是根目录的子目录时必须)
+        // 只有这个路径下的文件才会被devServer动态服务
+        publicPath: &#39;/&#39;,
+        port: 8080,
+        // 运行server时打开浏览器
+        open: true
+        // 前后端同域时，用于开发时的请求代理
+        proxy: {
+            &#39;/api&#39;: &#39;http://localhost&#39;
+        }
+    },
+    module: {
+        rules: [{
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            use: {
+                loader: &#39;babel-loader&#39;,
+                options: {
+                    presets: [&#39;env&#39;, &#39;react&#39;],
+                    plugins: [
+                        //babel-plugin-import用于antd等的按需加载
+                        [&quot;import&quot;, {
+                            &quot;libraryName&quot;: &quot;antd&quot;,
+                            &quot;style&quot;: &quot;css&quot;
+                        }]
+                    ]
+                }
+            }
+        }, {
+            test: /\.css$/,
+            use: [&#39;style-loader&#39;, &#39;css-loader&#39;]
+        }]
+    },
+    plugins: []
+};
+</code></pre><h3 id="运行webpack"><a href="#运行webpack" class="headerlink" title="运行webpack"></a>运行webpack</h3><pre><code>npm run start
+</code></pre><h2 id="IDE配置"><a href="#IDE配置" class="headerlink" title="IDE配置"></a>IDE配置</h2><p>sublime + js 插件</p>
+<ol>
+<li>CodeFormatter 代码格式化<br> 对js文件，设置e4x:true 忽略react中的xml代码，在syntaxes中增加’javascript (babel)’</li>
+<li>Babel<br> es6, react, jsx语法高亮，对js, jquery也有很好的支持<br> 菜单view -&gt; Syntax -&gt; Open all with current extension as… -&gt; Babel -&gt; JavaScript (Babel), 使用babel语法打开所有js文件</li>
+</ol>
+<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>初始化配置文件package.json</p>
+<pre><code>npm init --yes
+</code></pre><p>常用命令</p>
+<pre><code>// 本地安装
+npm install &lt;pkg&gt; --save
+
+// 全局安装
+npm install -g &lt;pkg&gt;
+
+// 更新
+npm update
+
+// 卸载
+npm uninstall &lt;pkg&gt;
+
+// 查看配置
+npm config list -l
+
+// 设置配置
+npm config set &lt;key&gt; &lt;val&gt; [-g]
+
+// 获取配置
+npm config get &lt;key&gt; [-g]
+
+// 配置源
+npm config set registry https://registry.npm.taobao.org
+
+// 查看源
+npm config get registry
+
+// 查看包
+npm info &lt;pkg&gt;
+
+// 搜索包
+npm search &lt;pattern&gt;
+
+// 安装列表
+npm list --depth=0
+
+// 运行命令(定义在scripts下)
+npm run &lt;cmd&gt;
+</code></pre><h2 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h2><p>提供react/es6编译转换到es5的功能。</p>
+<p>教程：<a href="http://www.ruanyifeng.com/blog/2016/01/babel.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/01/babel.html</a></p>
+<h3 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h3><pre><code># webpack模块
+npm install --save-dev babel-loader babel-core
+
+# 客户端工具
+npm install --save-dev babel-cli
+
+# react转换规则
+npm install --save-dev babel-preset-react
+
+# es2015|es2016|es2017转换规则
+npm install --save-dev babel-preset-env
+
+# antd等的按需加载插件
+npm install --save-dev babel-plugin-import
+</code></pre><h3 id="cli配置文件-babelrc"><a href="#cli配置文件-babelrc" class="headerlink" title="cli配置文件.babelrc"></a>cli配置文件.babelrc</h3><pre><code>{
+    &quot;presets&quot;: [
+      &quot;env&quot;,
+      &quot;react&quot;
+    ],
+    &quot;plugins&quot;: []
+  }
+</code></pre><h3 id="全局安装使用方法"><a href="#全局安装使用方法" class="headerlink" title="全局安装使用方法"></a>全局安装使用方法</h3><pre><code># 转码结果输出到标准输出
+babel example.js
+
+# 转码结果写入一个文件
+babel example.js -o compiled.js
+
+# 整个目录转码
+babel src -d lib
+
+# -s 参数生成source map文件
+babel src -d lib -s
+</code></pre><h3 id="本地安装使用方法"><a href="#本地安装使用方法" class="headerlink" title="本地安装使用方法"></a>本地安装使用方法</h3><p>改写package.json，通过<code>npm run build</code>调用</p>
+<pre><code>{
+  // ...
+  &quot;devDependencies&quot;: {
+    &quot;babel-cli&quot;: &quot;^6.0.0&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;babel src -d lib&quot;
+  },
+}
+</code></pre><h3 id="babel-node"><a href="#babel-node" class="headerlink" title="babel-node"></a>babel-node</h3><p>babel-cli自带babel-node命令，提供es6的交互执行环境，可直接运行es6脚本</p>
+<pre><code># 运行es6脚本
+babel-node es6.js
+</code></pre><p>本地安装运行，修改package.json，然后运行’npm run es6’</p>
+<pre><code>{
+  &quot;scripts&quot;: {
+    &quot;es6&quot;: &quot;babel-node es6.js&quot;
+  }
+}
+</code></pre><h3 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="babel-polyfill"></a>babel-polyfill</h3><p>babel默认只转es6新语法，不转换新的API，如Set, Maps, Promise等，详细清单参见babel-plugin-transform-runtime的definitions.js文件，需要引入babel-polyfill。</p>
+<p>安装：<code>npm install babel-polyfill</code></p>
+<p>使用：添加<code>import &#39;babel-polyfill&#39;</code>到入口顶部;</p>
+<p>其余使用方法参见：<a href="https://www.jianshu.com/p/3b27dfc6785c" target="_blank" rel="noopener">https://www.jianshu.com/p/3b27dfc6785c</a></p>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><ul>
+<li>阮一峰webpack教程：<a href="https://github.com/ruanyf/webpack-demos" target="_blank" rel="noopener">https://github.com/ruanyf/webpack-demos</a></li>
+<li>中文文档：<a href="https://www.webpackjs.com/concepts/" target="_blank" rel="noopener">https://www.webpackjs.com/concepts/</a></li>
+<li>官方文档：<a href="https://webpack.js.org/configuration/" target="_blank" rel="noopener">https://webpack.js.org/configuration/</a></li>
+</ul>
+<h3 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h3><ul>
+<li>webpack – building for development</li>
+<li>webpack -p – building for production (minification)</li>
+<li>webpack -w – for continuous incremental building</li>
+<li>webpack -d – including source maps</li>
+<li>webpack –colors – making building output pretty</li>
+<li>webpack –progress - print compilation progress in percentage</li>
+</ul>
+<h3 id="entry-输入"><a href="#entry-输入" class="headerlink" title="entry(输入)"></a>entry(输入)</h3><p>指定入口文件，可以是单页，也可以是多页</p>
+<pre><code>// 单页(简写)
+module.exports = {
+    entry: &#39;./path/to/entry/file.js&#39;
+}
+
+// 单页
+module.exports = {
+    entry: {
+        main: &#39;./path/to/entry/file.js&#39;
+    }
+}
+
+// 多页
+module.exports = {
+    entry: {
+        page1: &#39;./path/to/entry/page1.js&#39;,
+        page2: &#39;./path/to/entry/page2.js&#39;,
+        page3: &#39;./path/to/entry/page3.js&#39;
+    }
+}
+</code></pre><h3 id="output-输出"><a href="#output-输出" class="headerlink" title="output(输出)"></a>output(输出)</h3><p>最小配置项：输出目录(path)和文件名(filename)</p>
+<pre><code>// 单页
+// path: 指定bundle文件输出目录
+// publicPath: 指定bundle的web访问路径，
+// 可以是当前域名下的路径，也可以是cdn路径
+module.exports = {
+    entry: &#39;./path/to/entry/file.js&#39;,
+    output: {
+        filename: &#39;dist/bundle.js&#39;,
+        path: __dirname + &#39;/public&#39;,
+        publicPath: &#39;/&#39;,
+        publicPath: &#39;http://xxx.cdn.com/&#39;
+    }
+}
+
+// 多页(需要使用文件占位符)
+// [name]: entry中的key
+// [hash]: 输出文件的hash, 可以指定取多少位
+module.exports = {
+    entry: {
+        page1: &#39;./path/to/entry/page1.js&#39;,
+        page2: &#39;./path/to/entry/page2.js&#39;,
+        page3: &#39;./path/to/entry/page3.js&#39;
+    },
+    output: {
+        filename: &#39;[name]-[hash:8].js&#39;,
+        path: &#39;./path/to/output&#39;
+    }
+}
+</code></pre><h3 id="mode-模式"><a href="#mode-模式" class="headerlink" title="mode(模式)"></a>mode(模式)</h3><p>指定当前环境：development和production</p>
+<p>webpack默认调用使用development，使用-p选项指定为production</p>
+<pre><code>module.exports = {
+    mode: &#39;production&#39;
+}
+</code></pre><h3 id="loader-加载器"><a href="#loader-加载器" class="headerlink" title="loader(加载器)"></a>loader(加载器)</h3><p>指定源码编译工具，可以<code>module.rules</code>中指定多个</p>
+<pre><code>// test: 指定文件过滤模式
+// exclude: 指定文件排除模式
+// use: 使用当些loader，单个或多个(从右向左执行)
+module.exports = {
+    module: {
+        rules: [{
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            use: {
+                loader: &#39;babel-loader&#39;,
+                options: {
+                    presets: [&#39;env&#39;, &#39;react&#39;],
+                    plugins: [
+                        [&quot;import&quot;, {
+                            &quot;libraryName&quot;: &quot;antd&quot;,
+                            &quot;style&quot;: &quot;css&quot;
+                        }]
+                    ]
+                }
+            }
+        }, {
+            test: /\.css$/,
+            use: [&#39;style-loader&#39;, &#39;css-loader&#39;]
+        }]
+    }
+}
+</code></pre><p>babel-plugin-import: 用于antd等的按需加载的babel插件</p>
+<p>css-loader: 处理css文件</p>
+<p>style-loader: 增加在页面中插入<style>标签的js逻辑</p>
+<p>url-loader: 图片到img标签的处理</p>
+<pre><code>// 下例中处理png和jpg图片，当图片小于8K时，图片会转换成data url
+// &lt;img src=&quot;data:image/png;base64,iVBOR...uQmCC&quot;&gt;
+// &lt;img src=&quot;4853ca667a2b8b8844eb2693ac1b2578.png&quot;&gt;
+{
+    test: /\.(png|jpg)$/,
+    use: [{
+        loader: &#39;url-loader&#39;,
+        options: {
+          limit: 8192
+        }
+    }]
+}
+</code></pre><h3 id="plugins-插件"><a href="#plugins-插件" class="headerlink" title="plugins(插件)"></a>plugins(插件)</h3><p>HtmlwebpackPlugin：html模板插件，可以设置多个</p>
+<pre><code>// html默认输出到output.path下，输出html中通过相对路径引用bundle文件
+// 当指定了output.publicPath时，输出html中通过publicPath引用bundle文件
+// filename可以包含路径，但不在输出目录时不能通过devServer动态解析
+// 多页应用每个entry对应一个HtmlWebpackPlugin, 需要设置chunks属性
+plugins: [
+    new HtmlWebpackPlugin({
+        template: &#39;backend/template.html&#39;,
+        filename: &#39;backend.html&#39;,
+        hash: true
+    })
+]
+</code></pre><h3 id="code-split-代码分割"><a href="#code-split-代码分割" class="headerlink" title="code split(代码分割)"></a>code split(代码分割)</h3><pre><code>DllPlugin/DllReferencePlugin Vendor代码抽取
+
+SplitChunksPlugin 提取公共代码
+
+MiniCssExtractPlugin 提取css到独立的文件(用于替代style-loader,
+style-loader运行时使用js将css放到head的&lt;style&gt;标签中)
+
+</code></pre><h3 id="externals-引入外部变量"><a href="#externals-引入外部变量" class="headerlink" title="externals(引入外部变量)"></a>externals(引入外部变量)</h3><pre><code>// var $ = require(&#39;jquery&#39;);
+// 通过import/requery导入外部全局变量
+{
+    externals: {
+        jquery: &#39;jQuery&#39;,
+        data: &#39;data&#39;
+    }
+}
+</code></pre><h2 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h2><p>提供一个http服务器，监控文件变化，并实时编译，通过webpack-dev-server触发的编译会包含webpack-dev-server的相关模块，页面使用websocket获取文件更新，webpack-dev-server的编译输出是在内存中，而不是webpack的output.path。</p>
+<p>用于开发环境自动打包与更新，调用方式：</p>
+<ul>
+<li>直接调用：node_modules/.bin/webpack-dev-server –inline</li>
+<li>npm run：scripts.start: ‘webpack-dev-server -d –progress –progress –color’</li>
+</ul>
+<p>配置文件</p>
+<pre><code>devServer: {
+    contentBase: __dirname + &quot;/public&quot;, //根目录，可多个
+    // 输出文件的web访问路径，输出目录是根目录的子目录时必须
+    publicPath: &#39;/&#39;, 
+    port: 8080, //监听端口
+    open: true, //启动devserver时打开浏览器
+    inline: true, //使用inline模式[默认]
+    color: true, //同命令行--color
+    progress: true, //同命令行--progress
+    watchContentBase: true, //ContentBase文件变化强制刷新页面
+    proxy: {
+        //当前后端在同一个域名下时，用于dev时代理到后端接口
+        //eg. 访问/api/user时代理到http://localhost/api/user
+        &#39;/api&#39;: &#39;http://localhost&#39;
+    }
+}
+</code></pre></style></p></div>
+
+            
+    
+    
+    
+
+
+            
+    <div class="post-footer">
+        <span>更新时间: 2019年03月10日 15:48:19</span>
+
+        
+            <a class="pull-left" data-toggle="tooltip" data-placement="right" href="../../区块链系列/SubCategory/test-article.html" title="test-article">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+                <span>上一页</span>
+            </a>
+        
+
+        
+            <a class="pull-right" data-toggle="tooltip" data-placement="left" href="../../区块链系列/SubCategory/【Hexo】博客测试-测试文章-一.html" title="【Hexo】博客测试-测试文章(一)&lt;script&gt;">
+                <span>下一页</span>
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        
+    </div>
+
+
+            <div class="post-comment">
+
+</div>
+
+        </article>
+    </div>
+</row>
+
+        </div>
+    </main>
+
+    <footer>
+    <hr>
+    <div class="container">
+        ©2019 Made by <a href="/about.html" target="_blank">郑伟</a>,
+        Powered by <a href="https://hexo.io/">Hexo</a>
+    </div>
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

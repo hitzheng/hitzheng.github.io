@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/styles/github-gist.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+
+    
+
+    <title>[Docker]安装与使用 | 郑伟</title>
+
+    <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
+<div id="root">
+    <header class="navbar navbar-inverse navbar-static-top" id="top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">郑伟</a>
+        </div>
+
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li><a href="/">首页</a></li>
+                
+                    <li><a href="/archives/">归档</a></li>
+                
+                    <li><a href="/about.html">关于</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+    <main>
+        <div class="container">
+            <row>
+    <div class="col-md-3 hidden-xs hidden-sm">
+        <div class="panel panel-default" id="toc-sidebar">
+    <div class="panel-heading">目录</div>
+    <div class="panel-body">
+        <nav id="toc-sidenav">
+            <div class="nav">
+                <ol class="toc-list"><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#文档"><span class="toc-list-text">文档</span></a></li><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#架构"><span class="toc-list-text">架构</span></a></li><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#平台"><span class="toc-list-text">平台</span></a></li><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#使用"><span class="toc-list-text">使用</span></a></li><li class="toc-list-item toc-list-level-1"><a class="toc-list-link" href="#Dockerfile"><span class="toc-list-text">Dockerfile</span></a></li></ol>
+            </div>
+        </nav>
+    </div>
+</div>
+
+    </div>
+
+    <div class="col-md-9">
+        <article>
+            <div class="post-header">
+    <div class="post-title">
+    <a href="">[Docker]安装与使用</a>
+</div>
+<div class="post-meta">
+    <div>2019年01月14日</div>
+
+    
+        <div>
+            
+                <span><a href="../../categories/dev-ops/">dev-ops</a></span>
+            
+                <span><a href="../../categories/dev-ops/docker/">docker</a></span>
+            
+        </div>
+    
+
+    
+        <div>
+            
+                <span><a href="../../tags/docker/">docker</a></span>
+            
+                <span><a href="../../tags/学习/">学习</a></span>
+            
+        </div>
+    
+</div>
+
+</div>
+
+
+            <div class="post-body"><h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><ol>
+<li>官方文档: <a href="https://docs.docker.com/" target="_blank" rel="noopener">https://docs.docker.com/</a></li>
+<li>Docker-从入门到实战: <a href="https://yeasy.gitbooks.io/docker_practice/" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/</a></li>
+<li>Kubernetes指南: <a href="https://kubernetes.feisky.xyz/zh/" target="_blank" rel="noopener">https://kubernetes.feisky.xyz/zh/</a></li>
+</ol>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><ol>
+<li>dockerd: 服务端，基于linux容器技术，所以必须运行于linux上</li>
+<li>docker: 客户端，通过socket与服务端交互</li>
+<li>image: 镜像，包含容器运行的所有资源</li>
+<li>container: 容器，镜像的一个运行实例</li>
+</ol>
+<h1 id="平台"><a href="#平台" class="headerlink" title="平台"></a>平台</h1><p>docker-for-mac</p>
+<ul>
+<li>macOS 10.11以后</li>
+<li>基于HyperKit VM</li>
+<li>通过docker.vpnkit代理端口</li>
+</ul>
+<p>docker-for-windows</p>
+<ul>
+<li>win10</li>
+<li>基于Hyper-V VM</li>
+<li>通过docker.vpnkit代理端口</li>
+</ul>
+<p>docker-toolbox</p>
+<ul>
+<li>历史版本，用于旧系统</li>
+<li>基于Virtual Box VM，Core Linux</li>
+<li>通过VM的虚拟网卡访问</li>
+</ul>
+<p>centos7</p>
+<ul>
+<li>centos7内核版本3.10，生产环境需要升级内核以支持overlay2文件系统</li>
+<li>导入elrepo的key：rpm –import <a href="https://www.elrepo.org/RPM-GPG-KEY-elrepo.org" target="_blank" rel="noopener">https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</a></li>
+<li>导入elrepo源：rpm -Uvh <a href="http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm" target="_blank" rel="noopener">http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm</a></li>
+<li>升级内核：yum –enablerepo=elrepo-kernel install kernel-ml -y</li>
+<li>修改内核启动顺序：grub2-set-default 0</li>
+<li>重启系统：reboot</li>
+<li>查看内核：uname -a</li>
+<li>查看docker：docker info | grep storage-driver</li>
+</ul>
+<p>目录映射</p>
+<ul>
+<li>windows或macos上的目录通过VM的<code>共享目录</code>方式映射到docker的linux主机上</li>
+<li>dockerd通过<code>-p</code>卷映射的方式将目录映射到容器里</li>
+</ul>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>创建容器</p>
+<pre><code class="sh">docker run [options] &lt;IMAGE&gt; [COMMAND ARGS]
+--name ContainerName #容器名
+--hostname newdev #主机名
+--add-host a.com:127.0.0.1 #添加host绑定，可多个
+-v HostPath:Path #目录映射
+-p HostPort:Port #端口映射
+-d #后台运行
+-t #分配TTY
+-i #交互方式
+</code></pre>
+<p>进入容器</p>
+<pre><code class="sh"># 将本地输入、输出、错误附加到容器上
+docker attach &lt;container&gt;
+
+# 在容器中运行命令(本例切换用户并执行完整登陆)
+docker exec -ti &lt;container&gt;  su worker -l
+</code></pre>
+<p>容器连接</p>
+<pre><code class="sh">--link OtherContainerName:Alias 将其它容器连接到当前容器
+被连接的容器可以不使用-p暴露端口就可以和当前窗容器交互
+当前容器通过环境变量或hosts访问被连接的容器(环境变量有ALIAS开头的变量，/etc/hosts有Alias的指向)
+</code></pre>
+<p>数据容器</p>
+<pre><code class="sh">通过-v参数创建一个数据卷容器，其它容器通过--volume-from xxx
+将数据卷容器挂载到自己的目录下，多个挂载了数据卷的容器就可以共享数据了，
+比如单独起一个日志容器用来收集各容器产生的日志
+
+映像Dockerfile可以使用VOLUME xxx创建匿名数据卷，运行容器的时候使用-v参数进行覆盖
+</code></pre>
+<p>Docker信息</p>
+<pre><code class="sh"># 查看docker的系统信息
+docker info
+
+# 查看docker对象信息
+docker inspect &lt;container|image|...&gt;
+</code></pre>
+<p>创建镜像</p>
+<pre><code class="sh">1. 从容器创建镜像`docker commit &lt;container&gt; &lt;tagname&gt;`
+  eg. docker commit 1bf50710937a registry:5000/env:php5.6-dev
+
+2. 从Dockerfile创建镜像`docker build -t &lt;tagname&gt; &lt;DockerfileDir&gt;`
+  eg. docker build -t registry:5000/env:php5.6-dev .
+
+3. 推送到远程仓库`docker push &lt;tagname&gt;`
+  eg. docker push registry:5000/env:php5.6-dev
+</code></pre>
+<p>文件传输</p>
+<pre><code class="sh"># 将容器路径下的文件或目录复制到本地路径下
+docker cp [option] container:path local_path
+
+# 将本地路径下的文件或目录复制到容器路径下
+docker cp [option] local_path container:path
+
+-a 包含uid/gid信息
+-L 包含符号连接
+</code></pre>
+<p>容器操作</p>
+<pre><code class="sh"># 启动容器
+docker start &lt;container&gt;
+
+# 停止容器
+docker stop &lt;container&gt;
+
+# 重启容器
+docker restart &lt;container&gt;
+
+# 删除容器
+docker rm &lt;container&gt;
+
+# 删除所有终止的容器
+docker container prune
+
+# 查看容器日志(输出)
+docker logs [-f] &lt;container&gt;
+
+# 查看容器端口映射
+docker port &lt;container&gt;
+
+# 查看容器
+docker ps [-a]
+-a 所有容器
+
+# 容器统计(cpu,mem,net)
+docker stats [-a]
+
+# 容器进程
+docker top &lt;container&gt; [ps options]
+
+# 查看容器信息
+docker inspect [OPTIONS] &lt;container&gt;
+-f &#39;{{.State.Pid}}&#39; 过滤
+
+# 导出容器到一个tar文件
+docker export -o path &lt;container&gt;
+
+# 从容器的tar文件导入为新镜像
+docker import &lt;path&gt; [image]
+</code></pre>
+<p>镜像操作</p>
+<pre><code class="sh"># 查看镜像历史
+docker history -H &lt;image&gt;
+
+# 拉取镜像
+docker pull &lt;image:tag&gt;
+
+# 推送镜像
+docker push &lt;image:tag&gt;
+
+# 查看镜像列表
+docker images
+
+# 删除镜像
+docker rmi &lt;image&gt;
+
+# 删除无用镜像
+docker image prune
+
+# 搜索镜像
+docker serach &lt;pattern&gt;
+
+# 导出镜像到tar文件
+docker save -o path &lt;image&gt;
+
+# 从tar文件中加载镜像
+docker load -i path
+
+# 镜像标签
+docker tag src_img[:tag] dst_img[:tag]
+</code></pre>
+<p>私有仓库</p>
+<pre><code class="sh"># 官方提供docker-registry镜像用于搭建私有仓库
+# 仓库在容器的/var/lib/registry下
+# 可通过-v映射到主机目录下
+docker run -d -p 5000:5000 --restart=always --name registry registry
+
+# 默认只能使用https，通过以下两方式修改支持http
+# 1.启动命令添加选项
+--registry-mirror=https://registry.docker-cn.com --insecure-registries=192.168.199.100:5000
+
+# 2.修改/etc/docker/daemon.json
+{
+  &quot;registry-mirror&quot;: [
+    &quot;https://registry.docker-cn.com&quot;
+  ],
+  &quot;insecure-registries&quot;: [
+    &quot;192.168.199.100:5000&quot;
+  ]
+}
+</code></pre>
+<p>容器DNS</p>
+<pre><code class="sh"># 容器默认通过文件映射的方式与主机共享resolv.conf
+# 说明：search为本地搜索域，当查询host失败时，还会查询host.local.com
+# 可以通过以下方式进行指定
+# 1.修改/etc/docker/daemon.json
+{
+  &quot;dns&quot; : [
+    &quot;114.114.114.114&quot;,
+    &quot;8.8.8.8&quot;
+  ],
+  &quot;dnsSearch&quot;: [
+    &quot;.local.com&quot;
+  ]
+}
+
+# 2.通过启动命令指定
+--dns=8.8.8.8 --dns-search=.local.com
+</code></pre>
+<p>网络模型</p>
+<blockquote>
+<p>主机上创建一个名为docker0的虚拟网桥，自动分配一个类似172.17.0.1/16的私有地址，容器中的eth0通过<code>veth pair</code>与docker0相连，自动分配ip地址与docker0在同一网段，这样主机与容器，容器之前就可以相互通信，形成一个虚拟网络。</p>
+</blockquote>
+<p><img src="http://p8urb2iim.bkt.clouddn.com/docer-network.png" alt="docker网络模型"></p>
+<h1 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h1><p>官方手册：<a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/</a></p>
+<p>Dockerfile包含构建指令，每一条指令都将构建映像的一层。</p>
+<p>FROM 指定基础镜像</p>
+<pre><code class="sh"># 格式 FROM [registry[:port]/]&lt;image&gt;[:tag]
+# 如果不包含registry，默认为docker hub
+# 指定基础镜像为centos7
+FROM centos:7
+
+# 特殊格式，scratch表示空白基础镜像
+# 常用于制作第一层镜像
+FROM scratch
+</code></pre>
+<p>RUN 执行命令</p>
+<pre><code class="sh"># 格式1：RUN &lt;命令&gt;
+RUN echo &#39;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&#39; &gt; /var/html/index.html
+
+# 格式2：RUN [&quot;命令&quot;, &quot;参数1&quot;, &quot;参数2&quot;]
+RUN [&#39;echo&#39;, &#39;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&#39;, &#39;&gt;&#39;, &#39;/var/html/index.html&#39;]
+
+# 由于每个命令都会创建一层，为了减少层次，
+# 通常在一个RUN命令中合并执行多个相关操作，
+# 通过&amp;&amp;合并，通过\换行
+RUN buildDeps=&#39;gcc libc6-dev make&#39; \
+    &amp;&amp; apt-get update \
+    &amp;&amp; apt-get install -y $buildDeps
+
+# 构造镜像时，无用的中间缓存应该删除，否则会一直跟随镜像，造成臃肿
+</code></pre>
+<p>COPY 复制文件</p>
+<pre><code class="sh"># 格式：COPY src_path dst_path
+# 将构建目录下的文件或目录复制到容器的dst_path
+# src_path可以包含通配符，复制内容包含权限等元数据
+# dst_path可以是容器的绝对路径，也可以是工作目录(WORKDIR)的相对路径
+# dst_path不需要预先创建
+COPY package.json /usr/src/app/
+</code></pre>
+<p>ADD 添加文件</p>
+<pre><code class="sh"># 基本同COPY命令
+# src_path可以是URL，可直接下载文件
+# src_path可以是gzip、bzip2、xz压缩包，该命令会自动解压
+# ADD命令会让构建缓存失效，让构建变慢
+# 通常文件复制使用COPY，仅在需要解压时才使用ADD
+</code></pre>
+<p>CMD 启动命令</p>
+<pre><code class="sh"># 格式1：CMD &lt;命令&gt;
+# 格式2：CMD [&quot;命令&quot;, &quot;参数1&quot;, &quot;参数2&quot;]
+# 格式3：CMD [&quot;参数1&quot;, &quot;参数2&quot;] 用于ENTRYPOINT的参数
+# 做为容器启动时的默认命令，可被容器启动时指定的命令覆盖掉
+# 容器命令只能前台执行，主进程退出时容器就退出了
+CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
+</code></pre>
+<p>ENTRYPOINT 容器入口</p>
+<pre><code class="sh"># 基本同CMD，指定容器的入口命令
+# 不能通过运行时的命令覆盖，运行时可通过--entrypoint来覆盖
+# 同时存在CMD时，CMD的内容变成其参数，ENTRYPOINT &quot;&lt;CMD&gt;&quot;
+ENTRYPOINT [&quot;/usr/sbin/sshd&quot;, &quot;-D&quot;]
+</code></pre>
+<p>ENV 环境变量</p>
+<pre><code class="sh"># 格式：ENV k1=v1 [k2=v2 ...]
+# 设置的环境变量可用于其后面的Dockerfile命令，
+# 也可用于容器运行时执行的程序
+# 通过${k1}引用
+ENV PHP_DIR=/usr/local/php
+</code></pre>
+<p>ARG 构建参数</p>
+<pre><code class="sh"># 格式：ARG k1=v1 [k2=v2 ...]
+# 同ENV，但只能在构建过程中使用，容器运行时不存在
+# 构建镜像时可通过--build-arg &lt;k1=v1&gt;来覆盖
+</code></pre>
+<p>VOLUME 数据卷</p>
+<pre><code class="sh"># 格式1：VOLUME [&quot;路径1&quot;, &quot;路径2&quot;]
+# 格式2：VOLUME &lt;path&gt;
+# 将匿名卷挂载到容器的&lt;path&gt;目录下，用于数据库等储存数据
+# 该命令防止用户忘记指定目录映射时将数据写到容器里
+# 运行容器时通过-v mydata:/data进行覆盖
+VOLUME /data
+</code></pre>
+<p>EXPOSE 暴露端口</p>
+<pre><code class="sh"># 格式：EXPOSE &lt;port1&gt; [&lt;port2&gt; ...]
+# 仅仅是声明容器暴露的端口，容器运行时会映射随机端口到打开的端口上
+# 运行时通过-p hostport:port覆盖
+EXPOSE 80 443
+</code></pre>
+<p>WORKDIR 工作目录</p>
+<pre><code class="sh"># 格式：WORKDIR &lt;path&gt;
+# 指定容器的工作目录，不存在时会自动创建
+# 构建时指定容器的相对路径都是相对于WORKDIR
+</code></pre>
+<p>USER 当前用户</p>
+<pre><code class="sh"># 格式：USER &lt;user&gt;
+# 指定容器的用户，必须为已经存在的用户
+# 其后的RUN, CMD, ENTRYPOINT以该身份运行
+</code></pre>
+<p>HEALTHCHECK 健康检查</p>
+<pre><code class="sh"># 格式：HEALTHCHECK [选项] CMD &lt;命令&gt;
+# 格式：HEALTHCHECK NONE 屏蔽上层设置
+# 若指定则使用该命令检查容器状态，而不是用容器主进程的退出状态
+# --interval=&lt;间隔&gt; 默认30秒
+# --timeout=&lt;超时&gt; 默认30秒
+# --retries=&lt;重试&gt; 默认3次
+# 初始状态: starting, 成功状态: healthy, 失败状态: unhealthy
+# 命令返回值，成功: 0 失败: 1
+HEALTHCHECK --interval=5s --timeout=3s \
+  CMD curl -fs http://localhost/ || exit 1
+</code></pre>
+</div>
+
+            
+    
+    
+    
+
+
+            
+    <div class="post-footer">
+        <span>更新时间: 2019年01月14日 22:47:20</span>
+
+        
+
+        
+            <a class="pull-right" data-toggle="tooltip" data-placement="left" href="../../区块链系列/SubCategory/test-article.html" title="test-article">
+                <span>下一页</span>
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        
+    </div>
+
+
+            <div class="post-comment">
+
+</div>
+
+        </article>
+    </div>
+</row>
+
+        </div>
+    </main>
+
+    <footer>
+    <hr>
+    <div class="container">
+        ©2019 Made by <a href="/about.html" target="_blank">郑伟</a>,
+        Powered by <a href="https://hexo.io/">Hexo</a>
+    </div>
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="http://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.6/build/highlight.min.js"></script>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

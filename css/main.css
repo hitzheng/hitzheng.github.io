@@ -1,0 +1,169 @@
+body {
+  position: relative;
+  font: 14px/1.6 "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #333;
+}
+.hljs {
+  background: inherit;
+}
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#root > main {
+  flex: 1;
+}
+#root > footer {
+  width: 100%;
+  padding-bottom: 20px;
+  color: #999;
+  text-align: center;
+}
+#toc-sidebar.affix {
+  top: 20px;
+}
+#toc-sidebar.affix-bottom {
+  position: absolute;
+}
+@media (min-width: 992px) {
+  #toc-sidebar.affix,
+  #toc-sidebar.affix-bottom {
+    width: 205px;
+  }
+}
+@media (min-width: 1200px) {
+  #toc-sidebar.affix,
+  #toc-sidebar.affix-bottom {
+    width: 255px;
+  }
+}
+#toc-sidenav .toc-list-link {
+  display: block;
+}
+#toc-sidenav .toc-list-child {
+  display: none;
+}
+#toc-sidenav .active > .toc-list-child {
+  display: block;
+}
+#toc-sidenav .active > .toc-list-link {
+  color: #563d7c;
+  background-color: #f5f5f5;
+}
+.category-list,
+.archive-list,
+.tag-list,
+.toc-list {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+.category-list-child,
+.toc-list-child {
+  padding-left: 15px;
+  list-style-type: none;
+}
+.category-list-item,
+.archive-list-item,
+.tag-list-item,
+.toc-list-item {
+  padding: 1px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.category-list-count,
+.archive-list-count,
+.tag-list-count {
+  color: #337ab7;
+  margin: 0 3px;
+}
+.category-list-count:before,
+.archive-list-count:before,
+.tag-list-count:before {
+  content: "(";
+}
+.category-list-count:after,
+.archive-list-count:after,
+.tag-list-count:after {
+  content: ")";
+}
+.post-title {
+  line-height: 1.2;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post-title a {
+  color: inherit;
+}
+.post-meta {
+  display: flex;
+  color: #999;
+  font-size: 12px;
+}
+.post-meta div {
+  display: flex;
+}
+.post-meta div:not(:last-child):after {
+  content: "|";
+  margin: 0 6px;
+  color: #eee;
+}
+.post-meta div span:not(:last-child):after {
+  content: "·";
+  margin: 0 3px;
+}
+.post-meta div a {
+  color: inherit;
+}
+.post-list .list-group-item {
+  border: none;
+}
+.post-list .post-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.post-header {
+  margin-bottom: 30px;
+  padding-bottom: 5px;
+}
+.post-header .post-title {
+  font-size: 36px;
+}
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4,
+.post-body h5,
+.post-body h6 {
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 1em 0 0.5em;
+}
+.post-body h1,
+.post-body h2,
+.post-body h3 {
+  border-bottom: 1px solid #eee;
+}
+.post-related {
+  margin-top: 40px;
+}
+.post-related > ul {
+  column-count: 2;
+}
+.post-footer {
+  color: #999;
+  margin: 1em 0;
+  padding-top: 1em;
+  border-top: 1px solid #eee;
+  text-align: center;
+}
+.post-footer > span {
+  font-size: 12px;
+}
+.post-comment {
+  margin-top: 20px;
+}
