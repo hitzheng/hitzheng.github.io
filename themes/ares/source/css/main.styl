@@ -1,0 +1,166 @@
+$font-color = #333333
+$link-color = #337ab7
+$meta-color = #999999
+$border-color = #eeeeee
+$bg-color = #f5f5f5
+
+body
+  position: relative
+  font: 14px / 1.6 "PingFang SC", "Microsoft YaHei", sans-serif
+  color: $font-color
+
+.hljs
+  background: inherit
+
+#root
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+
+  > main
+    flex: 1
+
+  > footer
+    width: 100%
+    padding-bottom: 20px
+    color: $meta-color
+    text-align: center
+
+#toc-sidebar
+  &.affix
+    top: 20px
+
+  &.affix-bottom
+    position: absolute
+
+@media (min-width: 992px)
+  #toc-sidebar
+    &.affix, &.affix-bottom
+      width: 205px
+
+@media (min-width: 1200px)
+  #toc-sidebar
+    &.affix, &.affix-bottom
+      width: 255px
+
+#toc-sidenav
+  .toc-list-link
+    display: block
+
+  .toc-list-child
+    display: none
+
+  .active
+    > .toc-list-child
+      display: block
+
+    > .toc-list-link
+      color: #563d7c
+      background-color: $bg-color
+
+.category-list
+.archive-list
+.tag-list
+.toc-list
+  padding-left: 0
+  margin-bottom: 0
+  list-style-type: none
+
+.category-list-child
+.toc-list-child
+  padding-left: 15px
+  list-style-type: none
+
+.category-list-item
+.archive-list-item
+.tag-list-item
+.toc-list-item
+  padding: 1px 0
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.category-list-count
+.archive-list-count
+.tag-list-count
+  color: $link-color
+  margin: 0 3px
+
+  &:before
+    content: "("
+
+  &:after
+    content: ")"
+
+.post-title
+  line-height: 1.2
+  margin-bottom: 5px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+  a
+    color: inherit
+
+.post-meta
+  display: flex
+  color: $meta-color
+  font-size: 12px
+
+  div
+    display: flex
+
+    &:not(:last-child):after
+      content: "|"
+      margin: 0 6px
+      color: $border-color
+
+    span:not(:last-child):after
+      content: "·"
+      margin: 0 3px
+
+    a
+      color: inherit
+
+.post-list
+  .list-group-item
+    border: none
+
+  .post-title
+    font-size: 18px
+    font-weight: 500
+
+.post-header
+  margin-bottom: 30px
+  padding-bottom: 5px
+
+  .post-title
+    font-size: 36px
+
+.post-body
+  h1, h2, h3, h4, h5, h6
+    font-weight: 400
+    line-height: 1.5
+    margin: 1em 0 0.5em
+
+  h1, h2, h3
+    border-bottom: 1px solid $border-color
+
+.post-related
+  margin-top: 40px
+
+  > ul
+    column-count: 2
+
+.post-footer
+  color: $meta-color
+  margin: 1em 0
+  padding-top: 1em
+  border-top: 1px solid $border-color
+  text-align: center
+
+  > span
+    font-size: 12px
+
+.post-comment
+  margin-top: 20px

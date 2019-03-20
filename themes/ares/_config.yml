@@ -1,0 +1,8 @@
+# Header navbar
+menu:
+    home: /
+    archives: /archives/
+    about: /about.html
+
+# max heading for toc, 3 means h3
+toc_max_depth: 3

@@ -1,0 +1,8 @@
+<% if (site.posts && site.posts.length) { %>
+    <div class="panel panel-default">
+        <div class="panel-heading"><%= __("archives") %></div>
+        <div class="panel-body">
+            <%- list_archives({format: __("month_format")}) %>
+        </div>
+    </div>
+<% } %>

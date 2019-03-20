@@ -1,0 +1,14 @@
+categories: Categories
+archives: Archives
+tags: Tags
+comments: Comments
+home: Home
+about: About
+prev: Prev
+next: Next
+content: Content
+related_posts: Related Posts
+update_time: update time
+month_format: YYYY-MM
+date_format: YYYY-MM-DD
+datetime_format: YYYY-MM-DD HH:mm:ss

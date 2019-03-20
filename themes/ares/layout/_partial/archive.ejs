@@ -1,0 +1,15 @@
+<row>
+    <div class="col-md-3 hidden-xs hidden-sm">
+        <%- partial("_partial/page_sidebar") %>
+    </div>
+
+    <div class="col-md-9">
+        <ul class="list-group post-list">
+            <% page.posts.forEach(post => { %>
+                <li class="list-group-item">
+                    <%- partial("_partial/post_info", {post}) %>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</row>
